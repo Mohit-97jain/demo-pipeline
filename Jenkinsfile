@@ -4,7 +4,7 @@ pipeline{
         maven 'Maven'   // same name you gave in Jenkins config
     }
  environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') 
+        
         IMAGE_NAME = "Pipeline:v1"
     }
   
