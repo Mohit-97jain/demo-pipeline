@@ -22,6 +22,17 @@ pipeline{
                 }
             }
         }
+    stage("push image into docker hub"){
+      steps{
+        script{
+           docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS) {
+                        docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").push()
+                        docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").push("latest")
+                    }
+      }
+    }
+    }
+        
     stage("run"){
       steps{
 echo "running the application"
