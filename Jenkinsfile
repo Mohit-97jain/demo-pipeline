@@ -4,9 +4,9 @@ pipeline{
         maven 'Maven'   // same name you gave in Jenkins config
     }
  environment {
-        
-        IMAGE_NAME = "Pipeline:v1"
-    }
+    DOCKERHUB_CREDENTIALS = "dckr_pat_4qO2ugWRfbf2mUKxL6-FFPOp-Qg" // must be a valid ID
+    IMAGE_NAME = "mj36172/spring-mongo-app"  // no spaces or special chars
+}
   
   stages{
     stage("build"){
