@@ -25,7 +25,7 @@ pipeline{
     stage("push image into docker hub"){
       steps{
         script{
-           docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS) {
+           docker.withRegistry('https://index.docker.io/v1/', "dckr_pat_4qO2ugWRfbf2mUKxL6-FFPOp-Qg") {
                         docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").push()
                         docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").push("latest")
                     }
