@@ -2,24 +2,23 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') 
         IMAGE_NAME = "mj36172/spring-mongo-app"
     }
 
     tools {
-        maven 'Maven'   // Define Maven from Jenkins global tools
+        maven 'Maven'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Mohit-97jain/spring'   // your repo
+                git 'https://github.com/Mohit-97jain/spring'
             }
         }
 
         stage('Build with Maven') {
             steps {
-                bat 'mvn clean package -DskipTests'  // use "sh" if Linux agent
+                bat 'mvn clean package -DskipTests'
             }
         }
 
@@ -34,7 +33,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS) {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
                         docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").push()
                         docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").push("latest")
                     }
