@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "mj36172/spring-mongo-app"
+        IMAGE_NAME = "My-Pipeline-app"
     }
 
     tools {
