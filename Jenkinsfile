@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "my-pipeline-app"
+        IMAGE_NAME = "mj36172/my-pipeline-app"
     }
 
     tools {
